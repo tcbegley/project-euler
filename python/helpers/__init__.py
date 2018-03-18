@@ -1,6 +1,23 @@
 """
 Helper functions for Python solutions
 """
+from math import log
+
+
+def nth_prime(n):
+    lim = 14
+    if n >= 6:
+        # if n >= 6, an upper bound on nth prime is n(log(n) + log(log(n)))
+        lim = int(n * (log(n) + log(log(n))))
+    a = [True] * lim
+    count = 0
+    for i in range(2, lim):
+        if a[i]:
+            count += 1
+            if count == n:
+                return i
+            for j in range(i*i, lim, i):
+                a[j] = False
 
 
 def prime_sieve(limit):
