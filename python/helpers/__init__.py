@@ -5,6 +5,9 @@ from math import log
 
 
 def nth_prime(n):
+    """
+    Find nth prime
+    """
     lim = 14
     if n >= 6:
         # if n >= 6, an upper bound on nth prime is n(log(n) + log(log(n)))
@@ -64,3 +67,19 @@ def prime_factorise(x):
     if x != 1:
         factors.append(x)
     return factors
+
+
+def choose(n, k):
+    """
+    A fast way to compute binomial coefficients by Andrew Dalke.
+    """
+    if 0 <= k <= n:
+        num = 1
+        den = 1
+        for i in range(1, min(k, n - k) + 1):
+            num *= n
+            den *= i
+            n -= 1
+        return num // den
+    else:
+        return 0
