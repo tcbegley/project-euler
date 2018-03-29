@@ -69,6 +69,12 @@ def prime_factorise(x):
     return factors
 
 
+def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n - 1)
+
+
 def choose(n, k):
     """
     A fast way to compute binomial coefficients by Andrew Dalke.
@@ -83,3 +89,20 @@ def choose(n, k):
         return num // den
     else:
         return 0
+
+
+def sum_factors(n):
+    prod = 1
+    k = 2
+    while k*k <= n:
+        p = 1
+        while n % k == 0:
+            p = p * k + 1
+            n //= k
+        prod *= p
+        k += 1
+    if n > 1:
+        # if n is greater than 1, then there is one unaccounted for prime
+        # factor
+        prod *= 1 + n
+    return prod
